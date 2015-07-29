@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="<?php echo $this->model->description; ?>">
     <meta name="author" content="">
 
-    <title>Mrs Molly Baking | Home</title>
+    <title><?php echo $this->model->title; ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,11 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top
+    <?php
+        // Display the changing nav bar when the page is not the homepage
+        if( $_GET['page'] != 'home' ) : ?>navbar-shrink<?php endif;
+    ?> ">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -46,23 +50,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="index.html">Mrs. Molly Baking</a>
+                <a class="navbar-brand page-scroll" href="index.php?page=home">Mrs. Molly Baking</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li class="hidden">
-                        <a href="./index.html"></a>
+                        <a href="index.php?page=home"></a>
                     </li>
                     <li>
-                        <a href="./about.html">About</a>
+                        <a href="index.php?page=about">About</a>
                     </li>
                     <li>
-                        <a href="./contact.html">Contact</a>
+                        <a href="index.php?page=contact">Contact</a>
                     </li>
                     <li>
-                        <a href="./order.html">Place an Order</a>
+                        <a href="index.php?page=order">Place an Order</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -71,8 +75,8 @@
 				      Account <span class="caret"></span>
 				    </a>
 				    <ul class="dropdown-menu">
-                      <li><a href="registration-form.html">Register an Account</a></li>
-                      <li><a href="login.html">Login to your Account</a></li>
+                      <li><a href="index.php?page=register">Register an Account</a></li>
+                      <li><a href="index.php?page=login">Login to your Account</a></li>
                     </ul>
 				  </li>
 				</ul>
@@ -83,12 +87,22 @@
     </nav>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
+    <?php 
+
+      if($_GET['page'] == 'home' ) : ?>
+          <header>
+            <div class="container">
+              <div class="intro-text">
                 <div class="intro-lead-in">"Just like Grandma Used to Make"</div>
                 <div class="intro-heading">Mrs. Molly Baking</div>
                 <a href="./order.html" class="btn btn-xl">Place an Order</a>
+              </div>
             </div>
-        </div>
-    </header>
+          </header> ;
+      <?php endif;
+
+    ?>        
+
+
+
+

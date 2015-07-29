@@ -20,8 +20,8 @@
             <input type="email" class="form-control" id="email" placeholder="example@example.com">
           </div>
           <div class="form-group" class="col-md-6">
-            <label for="flavours">Select a Package: </label>
-            <select class="form-control">
+            <label>Select a Menu: </label>
+            <select class="form-control" name="menu">
                 <option></option>
                 <option></option>
                 <option></option>
@@ -32,7 +32,7 @@
             <textarea name="message" id="message" placeholder=" Message.." cols="30" rows="5"></textarea>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary">Place order</button>
+            <button type="submit" class="btn btn-primary" name="order-placed">Place order</button>
           </div>
         </div>
     </section>
