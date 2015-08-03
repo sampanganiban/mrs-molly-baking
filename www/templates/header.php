@@ -81,7 +81,7 @@
 
                 ?>
 				  <li role="presentation" class="dropdown">
-                    <a href="index.php?page=account">Account</a>
+                    <a href="index.php?page=account"><?php echo $text; ?></a>
                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>

@@ -6,14 +6,23 @@
                 <h3 class="section-subheading text muted text-center">Logging into your account helps to make placing orders easy for you!</h3>
             </div>
             <div class="row">
-                <form>
-                    <label for="username" class="col-lg-1">Username:</label>
-                    <input type="text" name="username" id="username" class="col-lg-4">    
+                <form novalidate method="post" action="index.php?page=login">
 
-                    <label for="password" class="col-lg-1">Password:</label>
-                    <input type="text" name="password" id="password" class="col-lg-4">
-
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" value="<?php echo $this->username; ?>">
+                    <?php $this->bootstrapAlert($this->usernameError, 'danger') ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                    <?php $this->bootstrapAlert($this->passwordError, 'danger') ?>
+                </div>
+                
                     <button type="submit" class="btn btn-primary" name="login">Login</button>
+                    <?php $this->bootstrapAlert($this->loginError, 'danger') ?>
+                
                 </form>
             </div>
         </div>

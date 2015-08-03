@@ -74,6 +74,14 @@ switch($_GET['page']) {
 		$page = new LoginPage($model);
 	break;
 
+	// Logout page
+	case 'logout':
+		require 'classes/models/LogoutModel.php';
+		require 'classes/views/LogoutPage.php';
+		$model = new LogoutModel();
+		$page = new LogoutPage($model);
+	break;
+
 }
 
 // Load the content for each page
