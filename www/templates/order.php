@@ -1,4 +1,4 @@
-<form>
+<form method="POST" action="">
     <section>
         <div class="container">
         <div class="row">

@@ -49,6 +49,31 @@ switch($_GET['page']) {
 		$page = new OrderPage($model);
 	break;
 
+	// Register page
+	case 'register':
+		require 'classes/models/RegisterModel.php';
+		require 'classes/views/RegisterPage.php';
+		$model = new RegisterModel();
+		$page = new RegisterPage($model);
+	break;
+
+	// Account page
+	case 'account':
+		require 'classes/models/AccountModel.php';
+		require 'classes/views/AccountPage.php';
+
+		$model = new AccountModel();
+		$page = new AccountPage( $model );
+	break;
+
+	// Login page
+	case 'login':
+		require 'classes/models/LoginModel.php';
+		require 'classes/views/LoginPage.php';
+		$model = new LoginModel();
+		$page = new LoginPage($model);
+	break;
+
 }
 
 // Load the content for each page

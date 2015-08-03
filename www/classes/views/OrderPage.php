@@ -13,13 +13,6 @@ class OrderPage extends Page {
 	private $emailError;
 
 	// Methods
-	// Load the order content
-	public function contentHTML() {
-
-		include 'templates/order.php';
-
-	}
-
 	public function __construct($model) {
 
 		// User the parent constructor code
@@ -32,6 +25,13 @@ class OrderPage extends Page {
 			$this->processOrder();
 
 		}
+
+	}
+
+	// Load the order content
+	public function contentHTML() {
+
+		include 'templates/order.php';
 
 	}
 

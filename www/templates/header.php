@@ -70,15 +70,36 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                <?php
+
+                    // Display the users username if they are logged it, if not then just display account
+                    if( isset($_SESSION['username']) ) {
+                      $text = $_SESSION['username'];
+                    } else {
+                      $text = 'Account';
+                    }
+
+                ?>
 				  <li role="presentation" class="dropdown">
-				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-				      Account <span class="caret"></span>
-				    </a>
-				    <ul class="dropdown-menu">
-                      <li><a href="index.php?page=register">Register an Account</a></li>
-                      <li><a href="index.php?page=login">Login to your Account</a></li>
-                    </ul>
-				  </li>
+                    <a href="index.php?page=account">Account</a>
+                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </a>
+                        <ul class="dropdown-menu">
+                            <?php
+
+                              // If the user is not logged in
+                              if( !isset($_SESSION['username']) ) : ?>
+                                <li><a href="index.php?page=register">Register</a></li>
+                                <li><a href="index.php?page=login">Login</a></li>
+                              <?php else: ?>
+                                <li><a href="index.php?page=logout">Logout</a></li>
+                              <?php endif;
+
+                            ?>
+                        </ul>  
+                  </li>
 				</ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -1,5 +1,5 @@
 <section>
-     <form>
+     <form novalidate action="index.php?page=register" method="post">
         <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -9,23 +9,26 @@
         </div>
           <div class="form-group" class="col-md-6">
             <label for="username">Username:</label>
-            <input type="email" class="form-control" id="username" placeholder="iambatman">
+            <input type="username" class="form-control" id="username" placeholder="iambatman" name="username">
+            <?php $this->bootstrapAlert($this->usernameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="example@email.com">
+            <input type="email" class="form-control" id="email" placeholder="example@email.com" name="email">
+            <?php $this->bootstrapAlert($this->emailError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="password">Password:</label>
-            <input type="email" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" name="password">
           </div>
           <div class="form-group" class="col-md-6">
             <label for="confirm-password">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirm-password">
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password">
           </div>
+          <?php $this->bootstrapAlert($this->passwordError, 'danger') ?>
           <div class="checkbox">
             <label>
-              <input type="checkbox">Receive updates and promotions via email
+              <input type="checkbox" checked>Receive updates and promotions via email
             </label>
           </div>
           <button type="submit" class="btn btn-primary" name="register">Sign up</button>
