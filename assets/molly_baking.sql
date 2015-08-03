@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2015 at 05:04 am
+-- Generation Time: Aug 03, 2015 at 05:35 am
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -75,8 +75,7 @@ INSERT INTO `flavours` (`ID`, `Description`) VALUES
 CREATE TABLE IF NOT EXISTS `menus` (
 `ID` tinyint(3) unsigned NOT NULL,
   `Name` varchar(30) NOT NULL,
-  `Flavour` varchar(50) NOT NULL,
-  `Type` varchar(20) NOT NULL
+  `Price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -129,7 +128,20 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `Title` varchar(60) NOT NULL,
   `Description` varchar(160) NOT NULL,
   `Name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`ID`, `Title`, `Description`, `Name`) VALUES
+(1, 'Mrs Molly Baking | Home', 'Homepage for a baking goods catering website that has cupcakes, cakes and pies', 'home'),
+(2, 'Mrs Molly Baking | About Us', 'Learn more about Mrs Molly Baking ', 'about'),
+(3, 'Mrs Molly Baking | Contact Us', 'Please contact us for any questions, we''re ready to answer your questions', 'contact'),
+(4, 'Mrs Molly Baking | Place an Order', 'You can place your order here for your choice of delicious cupcakes, cakes or pies', 'order'),
+(5, 'Mrs Molly Baking | Registration Page', 'Register an account with us for a member discount on your order', 'register'),
+(6, 'Mrs Molly Baking | Login Page', 'Login to your account so that you will be updated and given an exclusive discount on your order', 'login'),
+(7, 'Mrs Molly Baking | Account Page', 'This is your account page to Mrs Molly Baking', 'account');
 
 -- --------------------------------------------------------
 
@@ -154,7 +166,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(60) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Privilege` enum('user','admin') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`ID`, `Username`, `Password`, `Email`, `Privilege`) VALUES
+(1, 'admin', 'admin', 'admin@admin', 'admin'),
+(2, 'user', 'user', 'user@user.com', 'user'),
+(3, 'iambatman', '$2y$10$A15ymxAJgU.79FtHwCxFQexEy0iAfy2ZqwvoRPNArHi7Cb/pIJzde', 'batman@cave.com', 'user');
 
 -- --------------------------------------------------------
 
@@ -273,7 +294,7 @@ MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `types`
 --
@@ -283,7 +304,7 @@ MODIFY `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users_additional_info`
 --
