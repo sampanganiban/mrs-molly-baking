@@ -1,14 +1,30 @@
-<div class="container">
+<div class="container"> 
 	<div class="row">
-		<form action="" method="post">
-			<h3>Enable accounts to become Admins</h3>
-			<div class="form-group">
-				<label>users:</label>
-				<select>
-					<option></option>
-				</select>
-			</div>
-			<input type="submit" class="btn btn-primary" value="become admin" name="become-admin">
-		</form>
+		<table class="table">
+		<h2>ORDERS</h2>
+			<tr>
+			  <th>Order No.</th>
+			  <th>First Name: </th>
+			  <th>Last Name: </th>
+			  <th>Email: </th>
+			  <th>Message: </th>
+			</tr>
+			<tr>
+				<td>
+				
+					<?php 
+
+						
+
+
+					?>
+
+				</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+			</tr>
+		</table>
 	</div>
-</div>
+</div> 

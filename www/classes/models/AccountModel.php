@@ -40,7 +40,7 @@ class AccountModel extends Model {
 		// Filter the user data
 		$firstName 	= $this->filter($_POST['first-name']);
 		$lastName 	= $this->filter($_POST['last-name']);
-		// $bio 		= $this->filter($_POST['bio']);
+		$bio 		= $this->filter($_POST['bio']);
 		// $image 		= $this->filter($_POST['newUserImage']);
 
 		// If there is a result then do an update
@@ -55,7 +55,7 @@ class AccountModel extends Model {
 		} elseif( $result->num_rows == 0 ) {
 			// INSERT
 			$sql = "INSERT INTO users_additional_info
-					VALUES (NULL, $userID, '$firstName', '$lastName', '$image', '$bio')";
+					VALUES (NULL, $userID, '$firstName', '$lastName', 'default.jpg', '$bio')";
 		}
 
 		// Run the SQL

@@ -12,6 +12,7 @@ class AccountPage extends Page {
 	private $totalErrors = 0;
 	private $additionalInfoSuccess;
 	private $additionalInfoFail;
+	private $userImageError;
 
 	// Methods
 	public function __construct($model) {
@@ -79,7 +80,48 @@ class AccountPage extends Page {
 			$this->totalErrors++;
 		}
 
-		// ADD IN THE BIO AND IMAGE UPLOADER
+		if( strlen($_POST['bio']) > 2000 ) {
+			$this->userBioError = 'Sorry, your bio cannot be more than 2000 characters';
+			$this->totalErrors++;
+		}
+
+		// Attempt to upload the image
+		if( $this->totalErrors == 0 && isset($_FILES['profile-image']) && $_FILES['profile-image']['name'] != '' ) {
+
+			// Require the image uploader
+			require 'vendor/ImageUploader.php';
+
+			// Create instance of the Image Uploader
+			$imageUploader = new ImageUploader();
+
+			// Attempt to upload the file
+			$result = $imageUploader->upload('profile-image', 'img/profile-images/original/');
+
+			// If the upload was a success
+			if( $result == true ) {
+
+				// Get the file name
+				$imageName = $imageUploader->getImageName();
+
+				// Prepare the variables
+				$fileLocation = "img/profile-images/original/$imageName";
+				$destination = "img/profile-images/avatar/";
+
+				// Make the avatar version
+				$imageUploader->resize($fileLocation, 320, $destination, $imageName);
+
+				// Make the icon version
+				$destination = "img/profile-images/icon/";
+				$imageUploader->resize($fileLocation, 32, $destination, $imageName);
+
+				$_POST['newUserImage'] = $imageName;
+			} else {
+				// Something went wrong
+				$this->totalErrors++;
+				$this->userImageError = $imageUploader->errorMessage;
+			}
+
+		}
 
 		// If there are no errors, then add or update the additional information
 		if( $this->totalErrors == 0 ) { 
