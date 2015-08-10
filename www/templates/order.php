@@ -1,4 +1,4 @@
-<form method="POST" action="">
+<form method="POST" action="index.php?page=order">
     <section>
         <div class="container">
         <div class="row">
@@ -10,14 +10,17 @@
           <div class="form-group" class="col-md-6">
             <label for="first-name">First Name:</label>
             <input type="text" class="form-control" id="first-name"  name="first-name" placeholder="John">
+            <?php $this->bootstrapAlert($this->firstNameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="last-name">Last Name:</label>
             <input type="text" class="form-control" id="last-name"  name="last-name" placeholder="Smith">
+            <?php $this->bootstrapAlert($this->lastNameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="email">Contact Email:</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com">
+            <?php $this->bootstrapAlert($this->emailError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label>Select a Menu: </label>
@@ -30,7 +33,7 @@
                 // Loop through the result and display all the usernames
                 while( $row = $result->fetch_assoc() ) {
 
-                  echo '<option>'.$row['Name'].'</option>';
+                  echo '<option value="'.$row['ID'].'">'.$row['Name'].'</option>';
 
                 }
 
@@ -43,6 +46,8 @@
           </div>
           <div>
             <button type="submit" class="btn btn-primary" name="order-placed">Place order</button>
+            <?php $this->bootstrapAlert($this->placeOrderSuccess, 'success') ?>
+            <?php $this->bootstrapAlert($this->placeOrderFail, 'danger') ?>
           </div>
         </div>
     </section>
