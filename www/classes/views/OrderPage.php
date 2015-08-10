@@ -47,29 +47,5 @@ class OrderPage extends Page {
 		if(strlen($this->firstName) < 2) {
 			$this->firstNameError = 'Your First Name needs be to be at least 2 characters';
 		}
-
-
-
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

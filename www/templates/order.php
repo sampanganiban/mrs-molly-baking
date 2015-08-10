@@ -9,22 +9,32 @@
         </div>
           <div class="form-group" class="col-md-6">
             <label for="first-name">First Name:</label>
-            <input type="text" class="form-control" id="first-name" placeholder="John">
+            <input type="text" class="form-control" id="first-name"  name="first-name" placeholder="John">
           </div>
           <div class="form-group" class="col-md-6">
             <label for="last-name">Last Name:</label>
-            <input type="text" class="form-control" id="last-name" placeholder="Smith">
+            <input type="text" class="form-control" id="last-name"  name="last-name" placeholder="Smith">
           </div>
           <div class="form-group" class="col-md-6">
             <label for="email">Contact Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="example@example.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com">
           </div>
           <div class="form-group" class="col-md-6">
             <label>Select a Menu: </label>
             <select class="form-control" name="menu">
-                <option></option>
-                <option></option>
-                <option></option>
+              <?php
+
+                // Use the model to get all menus
+                $result = $this->model->getMenus();
+
+                // Loop through the result and display all the usernames
+                while( $row = $result->fetch_assoc() ) {
+
+                  echo '<option>'.$row['Name'].'</option>';
+
+                }
+
+              ?>
             </select>
           </div>
            <div class="form-group">
