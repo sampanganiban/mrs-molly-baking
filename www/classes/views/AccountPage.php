@@ -18,9 +18,19 @@ class AccountPage extends Page {
 	public function __construct($model) {
 		parent::__construct($model);
 
-		// if updating or inserting additional user info
+		// If updating or inserting additional user info
 		if(isset($_POST['additional-info'])) {
 			$this->processAdditionalInfo();
+		}
+
+		// If the user us an admin
+		if( isset($_SESSION['privilege']) && $_SESSION['privilege'] == 'admin' ) {
+
+			// If the admin has submitted the delete button
+			if( isset($_POST['delete-order']) ) {
+				$this->processDeleteOrder();
+			}
+
 		}
 
 	}
@@ -29,8 +39,8 @@ class AccountPage extends Page {
 
 		// Make sure the user is logged in
 		// If not then offer them a login or registration link
-		if( isset($_SESSION['username']) == false ) {
-			echo 'You need to be logged in';
+		if( !isset($_SESSION['username']) ) {
+			echo 'Sorry you need to have an account to access this';
 			return;
 		}
 
@@ -47,8 +57,6 @@ class AccountPage extends Page {
 
 	// Method to process the additional info form
 	private function processAdditionalInfo() {
-
-		// Variables
 
 		// Make the forms sticky
 		$this->firstName = trim($_POST['first-name']);
@@ -136,6 +144,10 @@ class AccountPage extends Page {
 		}
 
 
+	}
+
+	private function processDeleteOrder() {
+		$this->model->deleteOrder();
 	}
 
 

@@ -2,6 +2,23 @@
 
 class AccountModel extends Model {
 
+	public function getAllOrders() {
+
+		return $this->dbc->query("SELECT 
+										orders.ID,
+										FirstName, 
+										LastName, 
+										Email, 
+										Message,
+										Name
+									FROM 
+										orders
+									JOIN
+										menus
+									ON orders.menuID = menus.ID");
+
+	}
+
 	public function checkPassword( $password ) {
 
 		// Get the username of the person who is logged in
@@ -41,7 +58,7 @@ class AccountModel extends Model {
 		$firstName 	= $this->filter($_POST['first-name']);
 		$lastName 	= $this->filter($_POST['last-name']);
 		$bio 		= $this->filter($_POST['bio']);
-		// $image 		= $this->filter($_POST['newUserImage']);
+		$image 		= $this->filter($_POST['newUserImage']);
 
 		// If there is a result then do an update
 		if( $result->num_rows == 1 ) {
@@ -55,7 +72,7 @@ class AccountModel extends Model {
 		} elseif( $result->num_rows == 0 ) {
 			// INSERT
 			$sql = "INSERT INTO users_additional_info
-					VALUES (NULL, $userID, '$firstName', '$lastName', 'default.jpg', '$bio')";
+					VALUES (NULL, $userID, '$firstName', '$lastName', '$image', '$bio')";
 		}
 
 		// Run the SQL
@@ -72,10 +89,33 @@ class AccountModel extends Model {
 
 	public function getAdditionalInfo() {
 
-		return $this->dbc->query("	SELECT FirstName, LastName, Bio
-									FROM users_additional_info
-									WHERE UserID = ".$_SESSION['userID']);
+		return $this->dbc->query("	SELECT FirstName, LastName, Bio FROM users_additional_info WHERE UserID = ".$_SESSION['userID']);
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
