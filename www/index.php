@@ -82,6 +82,14 @@ switch($_GET['page']) {
 		$page = new LogoutPage($model);
 	break;
 
+	// 404
+	default:
+		require 'classes/models/Error404Model.php';
+		require 'classes/views/Error404Page.php';
+		$model = new Error404Model();
+		$page = new Error404Page( $model );
+	break;
+
 }
 
 // Load the content for each page
