@@ -30,6 +30,8 @@
 						<td><?php echo $row['Message']; ?></td>
 						<input type="hidden" value="<?php echo $row['ID']; ?>" name="ID">	
 						<td><input type="submit" value="Ready to DELETE order" class="btn btn-info" name="delete-order"></td>
+						<?php $this->bootstrapAlert($this->deleteOrderSuccess, 'success') ?>
+						<?php $this->bootstrapAlert($this->deleteOrderFail, 'danger') ?>
 					</form>
 				</tr>
 			<?php endwhile; ?>

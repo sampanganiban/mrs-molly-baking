@@ -13,6 +13,8 @@ class AccountPage extends Page {
 	private $additionalInfoSuccess;
 	private $additionalInfoFail;
 	private $userImageError;
+	private $deleteOrderSuccess;
+	private $deleteOrderFail;
 
 	// Methods
 	public function __construct($model) {
@@ -147,7 +149,16 @@ class AccountPage extends Page {
 	}
 
 	private function processDeleteOrder() {
-		$this->model->deleteOrder();
+		$result = $this->model->deleteOrder();
+
+		if($result) {
+			$this->deleteOrderSuccess = 'The order you have selected has been deleted';
+		} else {
+			$this->deleteOrderFail = 'The order has not been deleted';
+		}
+
+
+
 	}
 
 

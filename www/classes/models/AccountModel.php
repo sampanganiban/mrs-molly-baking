@@ -80,18 +80,7 @@ class AccountModel extends Model {
 
 	public function getAllOrders() {
 
-		return $this->dbc->query("SELECT 
-										orders.ID,
-										FirstName, 
-										LastName, 
-										Email, 
-										Message,
-										Name
-									FROM 
-										orders
-									JOIN
-										menus
-									ON orders.menuID = menus.ID");
+		return $this->dbc->query("SELECT orders.ID, FirstName,  LastName,  Email,  Message, Name FROM orders JOIN menus ON orders.menuID = menus.ID");
 
 	}
 
@@ -100,8 +89,15 @@ class AccountModel extends Model {
 		$ID = ($_POST['ID']);
 	
 		$sql = "DELETE FROM orders WHERE ID = $ID";
-		
+
 	 	$this->dbc->query($sql);
+
+	 	// If the query failed
+		if( $this->dbc->affected_rows == 1 ) {
+			return true;
+		}
+
+		return false;
 
 	}
 
