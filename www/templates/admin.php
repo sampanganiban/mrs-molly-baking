@@ -21,13 +21,16 @@
 			<!-- This will loop through and display each order made -->
 			<?php while($row = $result->fetch_assoc()): ?>
 				<tr>
-					<td><?php echo $row['ID']; ?></td>
-					<td><?php echo $row['Name']; ?></td>
-					<td><?php echo $row['FirstName']; ?></td>
-					<td><?php echo $row['LastName']; ?></td>
-					<td><?php echo $row['Email']; ?></td>
-					<td><?php echo $row['Message']; ?></td>
-					<td><form><input type="submit" value="Ready to DELETE order" class="btn btn-info" name="delete-order"></form></td>
+					<form method="post" action="index.php?page=account">
+						<td><?php echo $row['ID']; ?></td>
+						<td><?php echo $row['Name']; ?></td>
+						<td><?php echo $row['FirstName']; ?></td>
+						<td><?php echo $row['LastName']; ?></td>
+						<td><?php echo $row['Email']; ?></td>
+						<td><?php echo $row['Message']; ?></td>
+						<input type="hidden" value="<?php echo $row['ID']; ?>" name="ID">	
+						<td><input type="submit" value="Ready to DELETE order" class="btn btn-info" name="delete-order"></td>
+					</form>
 				</tr>
 			<?php endwhile; ?>
 		</table>

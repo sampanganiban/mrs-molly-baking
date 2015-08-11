@@ -2,22 +2,7 @@
 
 class AccountModel extends Model {
 
-	public function getAllOrders() {
 
-		return $this->dbc->query("SELECT 
-										orders.ID,
-										FirstName, 
-										LastName, 
-										Email, 
-										Message,
-										Name
-									FROM 
-										orders
-									JOIN
-										menus
-									ON orders.menuID = menus.ID");
-
-	}
 
 	public function checkPassword( $password ) {
 
@@ -90,6 +75,33 @@ class AccountModel extends Model {
 	public function getAdditionalInfo() {
 
 		return $this->dbc->query("	SELECT FirstName, LastName, Bio FROM users_additional_info WHERE UserID = ".$_SESSION['userID']);
+
+	}
+
+	public function getAllOrders() {
+
+		return $this->dbc->query("SELECT 
+										orders.ID,
+										FirstName, 
+										LastName, 
+										Email, 
+										Message,
+										Name
+									FROM 
+										orders
+									JOIN
+										menus
+									ON orders.menuID = menus.ID");
+
+	}
+
+	public function deleteOrder() {
+
+		$ID = ($_POST['ID']);
+	
+		$sql = "DELETE FROM orders WHERE ID = $ID";
+		
+	 	$this->dbc->query($sql);
 
 	}
 
