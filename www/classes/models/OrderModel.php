@@ -7,6 +7,16 @@ class OrderModel extends Model {
 
 		return $this->dbc->query("SELECT ID, Name, Price FROM menus");
 	
+	}	
+
+	// Function to display the user's information when they place an order
+	public function displayUserInfo() {
+
+		$userID = $_SESSION['userID'];
+		
+		return $this->dbc->query("SELECT FirstName, LastName FROM users_additional_info
+			WHERE userID = $userID");
+
 	}
 
 	// Function to place the order into the database
@@ -33,5 +43,7 @@ class OrderModel extends Model {
 		return false;
 	
 	}
+
+
 	
 }

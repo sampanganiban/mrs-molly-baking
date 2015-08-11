@@ -1,20 +1,46 @@
-<form method="POST" action="index.php?page=order">
+<form method="POST" action="index.php?page=order" enctype="multipart/form-data">
     <section>
         <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Place an Order</h2>
-                <h3 class="section-subheading text muted">Place an order and we'll contact you using the contact details you have added.</h3>
+                <h3 class="section-subheading text muted">Place an order and we'll contact you using the contact details you have provided.</h3>
             </div>
         </div>
+
+<?php
+
+    // Get the users additional info if it exists
+    $result = $this->model->displayUserInfo();
+
+    // If the person has logged in
+    if( isset($_SESSION['username']) && $result->num_rows == 1 ) {
+
+   
+
+            // Extract the data
+            $userInfo = $result->fetch_assoc();
+
+            $placingOrderFirstName = $userInfo['FirstName'];
+            $placingOrderLastName  = $userInfo['LastName'];
+
+    
+    } else {
+        
+            $placingOrderFirstName  = '';
+            $placingOrderLastName   = '';
+    }
+
+
+?>
           <div class="form-group" class="col-md-6">
             <label for="first-name">First Name:</label>
-            <input type="text" class="form-control" id="first-name"  name="first-name" placeholder="John">
+            <input type="text" class="form-control" id="first-name"  name="first-name" value="<?php echo $placingOrderFirstName; ?>" placeholder="John">
             <?php $this->bootstrapAlert($this->firstNameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="last-name">Last Name:</label>
-            <input type="text" class="form-control" id="last-name"  name="last-name" placeholder="Smith">
+            <input type="text" class="form-control" id="last-name"  name="last-name" value="<?php echo $placingOrderLastName; ?>" placeholder="Smith">
             <?php $this->bootstrapAlert($this->lastNameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">

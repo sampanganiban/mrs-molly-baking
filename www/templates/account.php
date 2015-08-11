@@ -41,26 +41,18 @@
 			<h3>Add or Update your additional Info</h3>
 			<p>This is will help when placing orders</p>
 				<div class="form-group">
-					<label for="first-name">
-						First Name:
-					</label>
-					<input type="text" value="<?php echo $this->firstName; ?>" name="first-name" id="first-name" >
+					<label for="first-name">First Name:</label>
+					<input type="text" value="<?php echo $firstName; ?>" name="first-name" id="first-name" >
 					<?php $this->bootstrapAlert($this->firstNameError, 'danger') ?>
 				</div>
 				<div class="form-group">
-					<label for="last-name">
-						Last Name:
-					</label>
-					<input type="text" value="<?php echo $this->lastName; ?>" name="last-name" id="last-name">
+					<label for="last-name">Last Name:</label>
+					<input type="text" value="<?php echo $lastName; ?>" name="last-name" id="last-name">
 					<?php $this->bootstrapAlert($this->lastNameError, 'danger') ?>
 				</div>
 				<div class="form-group">
-					<label for="bio">
-						Biography:
-					</label>
-					<textarea name="bio">
-						
-					</textarea>
+					<label for="bio">Biography:</label>
+					<textarea name="bio"><?php echo $bio ?></textarea>
 				</div>
 				<div class="form-group">
 					<label for="profile-image">
