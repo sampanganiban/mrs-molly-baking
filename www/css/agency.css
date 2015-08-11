@@ -45,6 +45,12 @@ a.active {
     color: #fec503;
 }
 
+#dropdown a {
+    
+    display:inline-block;
+
+}
+
 h1,
 h2,
 h3,

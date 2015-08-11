@@ -79,13 +79,10 @@
                       $text = 'Account';
                     }
 
-                ?>
-				  <li role="presentation" class="dropdown">
-                    <a href="index.php?page=account"><?php echo $text; ?></a>
-                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </a>
+                ?><!-- <span class="sr-only">Toggle Dropdown</span>role="presentation" -->
+				  <li  class="dropdown" id="dropdown">
+                    <a href="index.php?page=account" id="account-link"><?php echo $text; ?></a>
+                    <a data-toggle="dropdown" aria-haspopup="true" id="caret"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <?php
 
