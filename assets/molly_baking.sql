@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2015 at 05:38 am
+-- Generation Time: Aug 11, 2015 at 06:53 am
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 `ID` tinyint(3) unsigned NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Price` decimal(10,0) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `menus`
@@ -86,7 +86,13 @@ CREATE TABLE IF NOT EXISTS `menus` (
 INSERT INTO `menus` (`ID`, `Name`, `Price`) VALUES
 (1, 'Fancy Feast', '0'),
 (2, 'Mainstream Munch', '0'),
-(3, 'Party Time', '0');
+(3, 'Party Time', '0'),
+(4, 'Vanilla Cake', '0'),
+(5, 'Lemon Cake', '0'),
+(6, 'Carrot Cake', '0'),
+(7, 'Classic Raspberry Pie', '0'),
+(8, 'Fruit Pie', '0'),
+(9, 'Steak & Cheese Pie', '0');
 
 -- --------------------------------------------------------
 
@@ -146,15 +152,14 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `LastName` varchar(20) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Message` varchar(2000) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`ID`, `menuID`, `FirstName`, `LastName`, `Email`, `Message`) VALUES
-(5, 1, 'John', 'Smith', 'hello@goodbye.com', 'asgadgA'),
-(6, 3, 'Loreen', 'Salud', 'loreen@loreen.com', 'adsgseghwrGsGRSGRSGthanks');
+(11, 3, 'Ham', 'Cheese', 'ham@cheese.com', 'I want cheese on it.');
 
 -- --------------------------------------------------------
 
@@ -246,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `users_additional_info` (
 
 INSERT INTO `users_additional_info` (`ID`, `userID`, `FirstName`, `LastName`, `ProfileImage`, `Bio`) VALUES
 (1, 4, 'Admin', 'Admin', 'default.jpg', 'I am the admin.						\r\n					'),
-(2, 5, 'The', 'User', '', '');
+(2, 5, 'Jane', 'Smith', '', 'Jane Smith.');
 
 --
 -- Indexes for dumped tables
@@ -330,7 +335,7 @@ MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `menu_flavours`
 --
@@ -345,7 +350,7 @@ MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `pages`
 --
