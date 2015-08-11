@@ -39,10 +39,10 @@ class AccountPage extends Page {
 
 	public function contentHTML() {
 
-		// Make sure the user is logged in
-		// If not then offer them a login or registration link
+		// Make sure a user has logged in, if not then offer them a login or registration link
 		if( !isset($_SESSION['username']) ) {
-			echo 'Sorry you need to have an account to access this';
+			
+			include 'templates/error404.php';
 			return;
 		}
 
