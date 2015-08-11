@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2015 at 05:35 am
+-- Generation Time: Aug 11, 2015 at 05:38 am
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -42,29 +42,30 @@ CREATE TABLE IF NOT EXISTS `customers_enquiries` (
 
 CREATE TABLE IF NOT EXISTS `flavours` (
 `ID` mediumint(8) unsigned NOT NULL,
-  `Description` varchar(70) NOT NULL
+  `Description` varchar(70) NOT NULL,
+  `Quantity` tinyint(4) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `flavours`
 --
 
-INSERT INTO `flavours` (`ID`, `Description`) VALUES
-(1, 'Vanilla Cupcakes with Vanilla Bean and Chocolate Swirl Buttercream'),
-(2, 'Green Tea Cupcakes with White Chocolate Buttercream'),
-(3, 'Red Velvet Cupcakes with Lemon Buttercream'),
-(4, 'Vanilla Cupcakes with Vanilla Icing and Hundreds and Thousands'),
-(5, 'Chocolate Flavoured Cupcakes with Vanilla Buttercream'),
-(6, 'Caramel Flavoured Cupcakes with PB&J Buttercream'),
-(7, 'Cookies & Cream Cupcakes with Oreo Buttercream'),
-(8, 'Chocolate Cupcakes with Caramel & Peanut icing'),
-(9, 'Chocolate Cupcakes with Coconut Buttercream'),
-(10, 'Two layer vanilla cake with semi-sweet chocolate whipped cream icing'),
-(11, 'Lemon cake with lemon icing with almonds and sugared lemons for garnis'),
-(12, 'Carrot Cake with vanilla icing and almonds with edible royal icing car'),
-(13, 'Shortbread pastry case with raspberry coulis with fluffy meringue top'),
-(14, 'Winter fruit mixed with egg custard on a crisp and flaky pastry base'),
-(15, 'Nice flaky pastry with quality steak with aged Cheddar');
+INSERT INTO `flavours` (`ID`, `Description`, `Quantity`) VALUES
+(1, 'Vanilla Cupcakes with Vanilla Bean and Chocolate Swirl Buttercream', 6),
+(2, 'Green Tea Cupcakes with White Chocolate Buttercream', 6),
+(3, 'Red Velvet Cupcakes with Lemon Buttercream', 6),
+(4, 'Vanilla Cupcakes with Vanilla Icing and Hundreds and Thousands', 6),
+(5, 'Chocolate Flavoured Cupcakes with Vanilla Buttercream', 6),
+(6, 'Caramel Flavoured Cupcakes with PB&J Buttercream', 6),
+(7, 'Cookies & Cream Cupcakes with Oreo Buttercream', 6),
+(8, 'Chocolate Cupcakes with Caramel & Peanut icing', 6),
+(9, 'Chocolate Cupcakes with Coconut Buttercream', 6),
+(10, 'Two layer vanilla cake with semi-sweet chocolate whipped cream icing', 6),
+(11, 'Lemon cake with lemon icing with almonds and sugared lemons for garnis', 6),
+(12, 'Carrot Cake with vanilla icing and almonds with edible royal icing car', 6),
+(13, 'Shortbread pastry case with raspberry coulis with fluffy meringue top', 6),
+(14, 'Winter fruit mixed with egg custard on a crisp and flaky pastry base', 6),
+(15, 'Nice flaky pastry with quality steak with aged Cheddar', 6);
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,16 @@ CREATE TABLE IF NOT EXISTS `menus` (
 `ID` tinyint(3) unsigned NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Price` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`ID`, `Name`, `Price`) VALUES
+(1, 'Fancy Feast', '0'),
+(2, 'Mainstream Munch', '0'),
+(3, 'Party Time', '0');
 
 -- --------------------------------------------------------
 
@@ -88,7 +98,19 @@ CREATE TABLE IF NOT EXISTS `menu_flavours` (
 `ID` tinyint(3) unsigned NOT NULL,
   `menuID` tinyint(3) unsigned NOT NULL,
   `flavourID` mediumint(8) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `menu_flavours`
+--
+
+INSERT INTO `menu_flavours` (`ID`, `menuID`, `flavourID`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -100,7 +122,16 @@ CREATE TABLE IF NOT EXISTS `menu_types` (
 `ID` tinyint(3) unsigned NOT NULL,
   `menuID` tinyint(3) unsigned NOT NULL,
   `typeID` smallint(5) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `menu_types`
+--
+
+INSERT INTO `menu_types` (`ID`, `menuID`, `typeID`) VALUES
+(1, 1, 1),
+(6, 2, 1),
+(7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +146,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `LastName` varchar(20) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Message` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`ID`, `menuID`, `FirstName`, `LastName`, `Email`, `Message`) VALUES
+(5, 1, 'John', 'Smith', 'hello@goodbye.com', 'asgadgA'),
+(6, 3, 'Loreen', 'Salud', 'loreen@loreen.com', 'adsgseghwrGsGRSGRSGthanks');
 
 -- --------------------------------------------------------
 
@@ -151,8 +190,17 @@ INSERT INTO `pages` (`ID`, `Title`, `Description`, `Name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `types` (
 `ID` smallint(5) unsigned NOT NULL,
-  `Type` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `Type` varchar(10) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `types`
+--
+
+INSERT INTO `types` (`ID`, `Type`) VALUES
+(1, 'Cupcake'),
+(2, 'Cake'),
+(3, 'Pie');
 
 -- --------------------------------------------------------
 
@@ -166,16 +214,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(60) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Privilege` enum('user','admin') NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Password`, `Email`, `Privilege`) VALUES
-(1, 'admin', 'admin', 'admin@admin', 'admin'),
-(2, 'user', 'user', 'user@user.com', 'user'),
-(3, 'iambatman', '$2y$10$A15ymxAJgU.79FtHwCxFQexEy0iAfy2ZqwvoRPNArHi7Cb/pIJzde', 'batman@cave.com', 'user');
+(3, 'iambatman', '$2y$10$A15ymxAJgU.79FtHwCxFQexEy0iAfy2ZqwvoRPNArHi7Cb/pIJzde', 'batman@cave.com', 'user'),
+(4, 'admin', '$2y$10$1sE7gbSaxx8NmAn67WYO3eqbj2FkF448UFJuLRK/SQCdHTna5Py2u', 'admin@admin.com', 'admin'),
+(5, 'user', '$2y$10$vAydDlV4OKx07Gei7tgHme.SmyUTcXyemgI1Yk0oNNEgyh5NJITYK', 'user@user.com', 'user');
 
 -- --------------------------------------------------------
 
@@ -190,7 +238,15 @@ CREATE TABLE IF NOT EXISTS `users_additional_info` (
   `LastName` varchar(20) NOT NULL,
   `ProfileImage` varchar(100) NOT NULL,
   `Bio` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `users_additional_info`
+--
+
+INSERT INTO `users_additional_info` (`ID`, `userID`, `FirstName`, `LastName`, `ProfileImage`, `Bio`) VALUES
+(1, 4, 'Admin', 'Admin', 'default.jpg', 'I am the admin.						\r\n					'),
+(2, 5, 'The', 'User', '', '');
 
 --
 -- Indexes for dumped tables
@@ -274,22 +330,22 @@ MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `menu_flavours`
 --
 ALTER TABLE `menu_flavours`
-MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `menu_types`
 --
 ALTER TABLE `menu_types`
-MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pages`
 --
@@ -299,17 +355,17 @@ MODIFY `ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
-MODIFY `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users_additional_info`
 --
 ALTER TABLE `users_additional_info`
-MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
