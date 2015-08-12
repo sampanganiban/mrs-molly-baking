@@ -3,18 +3,25 @@
 class AccountPage extends Page {
 
 	// Properties
+	private $totalErrors = 0;
 
 	// Properties for the Additional Info form
 	private $firstName;
 	private $lastName;
 	private $firstNameError;
 	private $lastNameError;
-	private $totalErrors = 0;
 	private $additionalInfoSuccess;
 	private $additionalInfoFail;
 	private $userImageError;
 	private $deleteOrderSuccess;
 	private $deleteOrderFail;
+
+	// Properties for changing password
+	private $currentPasswordError;
+	private $newPasswordError;
+	private $confirmPasswordError;
+	private $passwordChangeSuccess;
+	private $passwordChangeFail;
 
 	// Methods
 	public function __construct($model) {
@@ -23,6 +30,11 @@ class AccountPage extends Page {
 		// If updating or inserting additional user info
 		if(isset($_POST['additional-info'])) {
 			$this->processAdditionalInfo();
+		}	
+
+		// If a user submits the changing password form
+		if(isset($_POST['change-password'])) {
+			$this->processPasswordChange();
 		}
 
 		// If the user us an admin
@@ -42,12 +54,13 @@ class AccountPage extends Page {
 		// Make sure a user has logged in, if not then offer them a login or registration link
 		if( !isset($_SESSION['username']) ) {
 			
-			include 'templates/error404.php';
+			echo 'Sorry you need an account';
 			return;
 		}
 
 		include 'templates/account.php';
 
+	
 		// If user is an admin
 		if( $_SESSION['privilege'] == 'admin' ) {
 
@@ -157,9 +170,52 @@ class AccountPage extends Page {
 			$this->deleteOrderFail = 'The order has not been deleted';
 		}
 
+	}
 
+	private function processPasswordChange() {
+
+		// Create variables for passwords
+		$currentPassword = $_POST['current-password'];
+		$newPassword	 = $_POST['new-password'];
+		$confirmPassword = $_POST['confirm-password'];
+
+		// Validate the form
+		if( strlen($currentPassword) == 0 ) {
+			$this->currentPasswordError = 'This is required';
+			$this->totalErrors++;
+		} elseif( !$this->model->checkPassword($currentPassword) ) {
+			$this->currentPasswordError = 'Incorrect password';
+			$this->totalErrors++;
+		}
+
+		if( strlen($newPassword) < 8 ) {
+			$this->newPasswordError = 'Your new password needs to be longer than 8 characters';
+			$this->totalErrors++;
+		}
+
+		if( $confirmPassword != $newPassword ) {
+			$this->confirmPasswordError = 'Does not match the new password';
+			$this->totalErrors++;
+		}
+
+		// If no errors
+		if( $this->totalErrors == 0 ) {
+
+			// Update the password
+			$result = $this->model->updatePassword();
+
+			// If updating the password was a success
+			if( $result ) {
+				$this->passwordChangeSuccess = 'Successfully changed your password!';
+			} else {
+				$this->passwordChangeFail = 'Something went wrong updating your password';
+			}
+
+		}
 
 	}
+
+
 
 
 

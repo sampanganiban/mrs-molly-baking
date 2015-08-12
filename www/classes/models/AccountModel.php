@@ -2,8 +2,6 @@
 
 class AccountModel extends Model {
 
-
-
 	public function checkPassword( $password ) {
 
 		// Get the username of the person who is logged in
@@ -20,6 +18,31 @@ class AccountModel extends Model {
 
 		// Compare the current password against user existing password
 		if( password_verify($password, $data['Password']) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function updatePassword() {
+
+		// Get the username of the person logged in
+		$username = $_SESSION['username'];
+
+		// Require the password compat library
+		require 'vendor/password.php';
+
+		// Hash the new password
+		$hashedPassword = password_hash($_POST['new-password'], PASSWORD_BCRYPT);
+
+		// Prepare UPDATE SQL
+		$sql = "UPDATE users SET Password = '$hashedPassword' WHERE Username = '$username'";
+
+		// Run the SQL
+		$this->dbc->query($sql);
+
+		// Ensure the password update worked
+		if( $this->dbc->affected_rows != 0 ) {
 			return true;
 		} else {
 			return false;

@@ -1,8 +1,8 @@
 <section>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h1>Hello <?php echo $_SESSION['username']; ?></h1>
+			<div class="col-lg-12">
+				<h1>Hello <em><?php echo $_SESSION['username']; ?></em></h1>
 			</div>
 		</div>
 
@@ -36,9 +36,9 @@
 
 ?>
 
-		<div class="row">
-		  <form method="post" action="index.php?page=account" enctype="multipart/form-data">
-			<h3>Add or Update your additional Info</h3>
+		<div class="row" class="col-md-12">
+		  <form method="post" action="index.php?page=account" enctype="multipart/form-data" class="col-md-6">
+			<h3>Add or Update additional Info</h3>
 			<p>This is will help when placing orders</p>
 				<div class="form-group">
 					<label for="first-name">First Name:</label>
@@ -66,7 +66,48 @@
 				<?php $this->bootstrapAlert($this->additionalInfoFail, 'danger') ?>
 
 				<button class="btn btn-primary" name="additional-info">submit</button>
-		  </form>	
+		  </form>
+
+		<!-- Form to change password -->
+		  <form method="post" action="index.php?page=account" class="col-md-6">
+		  	<h3>Change your Password</h3>
+		  	<p>Change your password to make your account more secure</p>
+		  		<div>
+					<label for="current-password" class="col-md-5">Your Password:</label>
+					<input type="password" name="current-password">
+					<?php $this->bootstrapAlert($this->currentPasswordError, 'danger') ?>
+				</div>
+				<div>
+					<label for="new-password" class="col-md-5">New Password:</label>
+					<input type="password" name="new-password">
+					<?php $this->bootstrapAlert($this->newPasswordError, 'danger') ?>
+				</div>
+				<div>
+					<label for="confirm-password" class="col-md-5">Confirm New Password:</label>
+					<input type="password" name="confirm-password">
+					<?php $this->bootstrapAlert($this->confirmPasswordError, 'danger') ?>
+				</div>
+
+				<?php $this->bootstrapAlert($this->passwordChangeSuccess, 'success') ?>
+				<?php $this->bootstrapAlert($this->passwordChangeFail, 'danger') ?>
+				
+				<button class="btn btn-primary" name="change-password">submit</button>
+		  </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		</div>
 	</div>
 </section>
