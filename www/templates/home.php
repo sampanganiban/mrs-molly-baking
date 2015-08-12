@@ -97,9 +97,9 @@
                 </div>
     </section>
 
-    <!-- Portfolio Modals -->
+    <!-- Menu Modals -->
 
-    <!-- Portfolio Modal 1 -->
+    <!-- Menu Modal 1 -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -112,7 +112,6 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <!-- Project Details Go Here -->
                             <h2>Cupcake Packages</h2>
                             <p>Choose the package best suits your needs</p>
                             <div class="col-lg-4">
@@ -149,7 +148,7 @@
         </div>
     </div>
 
-    <!-- Portfolio Modal 2 -->
+    <!-- Menu Modal 2 -->
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -162,7 +161,6 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <!-- Project Details Go Here -->
                             <h2>Cake Packages</h2>
                             <p>Choose a cake best for your occasion</p>
                             <div class="col-lg-4">
@@ -190,7 +188,7 @@
         </div>
     </div>
 
-    <!-- Portfolio Modal 3 -->
+    <!-- Menu Modal 3 -->
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -203,7 +201,6 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <!-- Project Details Go Here -->
                             <h2>Pie Packages</h2>
                             <p>Try something different at your gathering, with our delicious savoury or sweet selections</p>
                             <div class="col-lg-4">
