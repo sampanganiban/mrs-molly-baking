@@ -9,32 +9,34 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form method="post" action="index.php?page=contact" novalidate>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your First Name *" id="name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block text-danger"></p>
+                                    <input type="text" class="form-control" placeholder="Your First Name" name="first-name">
+                                    <?php $this->bootstrapAlert( $this->contactFirstNameError ,'danger') ?>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Last Name *" id="email" required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
+                                    <input type="text" class="form-control" placeholder="Your Last Name" name="last-name">
+                                    <?php $this->bootstrapAlert( $this->contactLastNameError ,'danger') ?>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Email *" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                    <p class="help-block text-danger"></p>
+                                    <input type="email" class="form-control" placeholder="Your Email" name="email">
+                                    <?php $this->bootstrapAlert( $this->contactEmailError ,'danger') ?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
+                                    <textarea class="form-control" placeholder="Your Message" name="message"></textarea>
+                                    <?php $this->bootstrapAlert( $this->contactMessageError ,'danger') ?>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send Message</button>
+                                <?php $this->bootstrapAlert( $this->contactFail, 'danger') ?>
+                                <?php $this->bootstrapAlert( $this->contactSuccess, 'success') ?>
+                                <button type="submit" class="btn btn-xl" name="message-sent">Send Message</button>
                             </div>
                         </div>
                     </form>
