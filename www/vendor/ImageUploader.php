@@ -10,7 +10,7 @@ class ImageUploader {
 	private $imageTemp;
 	private $inputName;
 	private $destination;
-	public $errorMessage;
+	public  $errorMessage;
 	private $imageTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
 	// Function to send back the name of the image

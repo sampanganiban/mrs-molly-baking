@@ -37,6 +37,7 @@
 ?>
 
 		<div class="row" class="col-md-12">
+		<!-- Form to update the additional information -->
 		  <form method="post" action="index.php?page=account" enctype="multipart/form-data" class="col-md-6">
 			<h3>Add or Update additional Info</h3>
 			<p>This is will help when placing orders</p>
@@ -55,14 +56,12 @@
 					<textarea name="bio"><?php echo $bio ?></textarea>
 				</div>
 				<div class="form-group">
-					<label for="profile-image">
-						Profile Image:
-					</label>
+					<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+					<label for="profile-image">Profile Image:</label>
 					<input type="file" name="profile-image" id="profile-image">
 				</div>
 				
 				<?php $this->bootstrapAlert($this->additionalInfoSuccess, 'success') ?>
-
 				<?php $this->bootstrapAlert($this->additionalInfoFail, 'danger') ?>
 
 				<button class="btn btn-primary" name="additional-info">submit</button>
@@ -93,21 +92,6 @@
 				
 				<button class="btn btn-primary" name="change-password">submit</button>
 		  </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		</div>
 	</div>
 </section>

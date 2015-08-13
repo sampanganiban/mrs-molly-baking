@@ -2,6 +2,18 @@
 
 class AccountModel extends Model {
 
+	public function getAllOrders() {
+
+		return $this->dbc->query("SELECT orders.ID, FirstName,  LastName,  Email,  Message, Name FROM orders JOIN menus ON orders.menuID = menus.ID");
+
+	}
+
+	public function getAllMessages() {
+
+			return $this->dbc->query("SELECT ID, FirstName,  LastName,  Email,  Message FROM customers_enquiries");
+
+	}
+
 	public function checkPassword( $password ) {
 
 		// Get the username of the person who is logged in
@@ -57,7 +69,7 @@ class AccountModel extends Model {
 		// Query to see if there is existing info in the database
 		$sql = "SELECT FirstName, LastName, ProfileImage, Bio
 				FROM users_additional_info
-				WHERE UserID = $userID";
+				WHERE userID = $userID";
 
 		// Run the SQL
 		$result = $this->dbc->query($sql);
@@ -66,21 +78,53 @@ class AccountModel extends Model {
 		$firstName 	= $this->filter($_POST['first-name']);
 		$lastName 	= $this->filter($_POST['last-name']);
 		$bio 		= $this->filter($_POST['bio']);
-		$image 		= $this->filter($_POST['newUserImage']);
 
 		// If there is a result then do an update
 		if( $result->num_rows == 1 ) {
+
+			// If the user has provided an image
+			if( isset($_POST['profile-image']) ) {
+
+				$image = $this->filter($_POST['profile-image']);
+
+				// Convert the result into an associative array
+				$data = $result->fetch_assoc();
+
+				if($data['ProfileImage'] != 'default.jpg') {
+					
+					// Delete the old images
+					unlink('img/profile-images/original/'.$data['ProfileImage']);
+					unlink('img/profile-images/icon/'.$data['ProfileImage']);
+					unlink('img/profile-images/avatar/'.$data['ProfileImage']);
+				}
+			
+			} else {
+				// Convert the result into an associative array
+				$data = $result->fetch_assoc();
+
+				// No new image
+				$image = $data['ProfileImage'];
+			}
+
 			// UPDATE
-			$sql = "UPDATE users_additional_info
-					SET FirstName = '$firstName',
-						LastName = '$lastName',
-						Bio = '$bio'
-					WHERE UserID = $userID";
+			$sql = "UPDATE users_additional_info SET FirstName = '$firstName', LastName = '$lastName', ProfileImage = '$image', Bio = '$bio' WHERE userID = $userID";
 
 		} elseif( $result->num_rows == 0 ) {
+
+			// If there was a newUserImage in the post array that means an image was provided
+			if( isset($_POST['newUserImage']) ) {
+				
+				$image = $this->filter($_POST['newUserImage']);
+			
+			} else {
+			
+				$image = 'default.jpg';
+			
+			}
+			
 			// INSERT
-			$sql = "INSERT INTO users_additional_info
-					VALUES (NULL, $userID, '$firstName', '$lastName', '$image', '$bio')";
+			$sql = "INSERT INTO users_additional_info VALUES (NULL, $userID, '$firstName', '$lastName', '$image', '$bio')";
+		
 		}
 
 		// Run the SQL
@@ -101,17 +145,29 @@ class AccountModel extends Model {
 
 	}
 
-	public function getAllOrders() {
-
-		return $this->dbc->query("SELECT orders.ID, FirstName,  LastName,  Email,  Message, Name FROM orders JOIN menus ON orders.menuID = menus.ID");
-
-	}
 
 	public function deleteOrder() {
 
 		$ID = ($_POST['ID']);
 	
 		$sql = "DELETE FROM orders WHERE ID = $ID";
+
+	 	$this->dbc->query($sql);
+
+	 	// If the query failed
+		if( $this->dbc->affected_rows == 1 ) {
+			return true;
+		}
+
+		return false;
+
+	}
+
+	public function deleteMessage() {
+
+		$ID = ($_POST['ID']);
+	
+		$sql = "DELETE FROM customers_enquiries WHERE ID = $ID";
 
 	 	$this->dbc->query($sql);
 

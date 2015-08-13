@@ -15,6 +15,8 @@ class AccountPage extends Page {
 	private $userImageError;
 	private $deleteOrderSuccess;
 	private $deleteOrderFail;
+	private $deleteMessageSuccess;
+	private $deleteMessageFail;
 
 	// Properties for changing password
 	private $currentPasswordError;
@@ -40,9 +42,14 @@ class AccountPage extends Page {
 		// If the user us an admin
 		if( isset($_SESSION['privilege']) && $_SESSION['privilege'] == 'admin' ) {
 
-			// If the admin has submitted the delete button
+			// If the admin has submitted the deleting order button
 			if( isset($_POST['delete-order']) ) {
 				$this->processDeleteOrder();
+			}
+
+			// If the admin has submitted the deleting message button
+			if( isset($_POST['delete-message']) ) {
+				$this->processDeleteMessage();
 			}
 
 		}
@@ -128,7 +135,7 @@ class AccountPage extends Page {
 
 				// Prepare the variables
 				$fileLocation = "img/profile-images/original/$imageName";
-				$destination = "img/profile-images/avatar/";
+				$destination = "img/profile-images/avatars/";
 
 				// Make the avatar version
 				$imageUploader->resize($fileLocation, 320, $destination, $imageName);
@@ -137,7 +144,7 @@ class AccountPage extends Page {
 				$destination = "img/profile-images/icon/";
 				$imageUploader->resize($fileLocation, 32, $destination, $imageName);
 
-				$_POST['newUserImage'] = $imageName;
+				$_POST['profile-image'] = $imageName;
 			} else {
 				// Something went wrong
 				$this->totalErrors++;
@@ -158,17 +165,6 @@ class AccountPage extends Page {
 			}
 		}
 
-
-	}
-
-	private function processDeleteOrder() {
-		$result = $this->model->deleteOrder();
-
-		if($result) {
-			$this->deleteOrderSuccess = 'The order you have selected has been deleted';
-		} else {
-			$this->deleteOrderFail = 'The order has not been deleted';
-		}
 
 	}
 
@@ -215,7 +211,27 @@ class AccountPage extends Page {
 
 	}
 
+	private function processDeleteOrder() {
+		$result = $this->model->deleteOrder();
 
+		if($result) {
+			$this->deleteOrderSuccess = 'The order you have selected has been deleted';
+		} else {
+			$this->deleteOrderFail = 'The order has not been deleted';
+		}
+
+	}
+
+	private function processDeleteMessage() {
+		$result = $this->model->deleteMessage();
+
+		if($result) {
+			$this->deleteMessageSuccess = 'The message you have selected has been deleted';
+		} else {
+			$this->deleteMessageFail = 'The message has not been deleted';
+		}
+
+	}
 
 
 
