@@ -113,7 +113,7 @@
               <div class="intro-text">
                 <div class="intro-lead-in">"Just like Grandma Used to Make"</div>
                 <div class="intro-heading">Mrs. Molly Baking</div>
-                <a href="./order.html" class="btn btn-xl">Place an Order</a>
+                <a href="index.php?page=order" class="btn btn-xl">Place an Order</a>
               </div>
             </div>
           </header> ;
