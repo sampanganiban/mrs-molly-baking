@@ -13,21 +13,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your First Name" name="first-name">
+                                    <input type="text" class="form-control" value="<?php echo $this->firstName; ?>" placeholder="Your First Name" name="first-name">
                                     <?php $this->bootstrapAlert( $this->contactFirstNameError ,'danger') ?>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Last Name" name="last-name">
+                                    <input type="text" class="form-control" value="<?php echo $this->lastName; ?>" placeholder="Your Last Name" name="last-name">
                                     <?php $this->bootstrapAlert( $this->contactLastNameError ,'danger') ?>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email" name="email">
+                                    <input type="email" class="form-control" value="<?php echo $this->email; ?>" placeholder="Your Email" name="email">
                                     <?php $this->bootstrapAlert( $this->contactEmailError ,'danger') ?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message" name="message"></textarea>
+                                    <textarea class="form-control"  placeholder="Your Message" name="message"><?php echo $this->message; ?></textarea>
                                     <?php $this->bootstrapAlert( $this->contactMessageError ,'danger') ?>
                                 </div>
                             </div>
