@@ -1,7 +1,7 @@
-<div class="container"> 
+<div class="container">
 	<div class="row">
 		<table class="table">
-		<h2>ORDERS</h2>
+		<h2>Customer ORDERS</h2>
 			<tr>
 			  <th>Order No.</th>
 			  <th>Menu: </th>
@@ -32,6 +32,40 @@
 						<td><input type="submit" value="Ready to DELETE order" class="btn btn-info" name="delete-order"></td>
 						<?php $this->bootstrapAlert($this->deleteOrderSuccess, 'success') ?>
 						<?php $this->bootstrapAlert($this->deleteOrderFail, 'danger') ?>
+					</form>
+				</tr>
+			<?php endwhile; ?>
+		</table>
+	</div>
+	<div class="row">
+		<table class="table">
+		<h2>Customer Enquiries</h2>
+			<tr>
+			  <th>First Name: </th>
+			  <th>Last Name: </th>
+			  <th>Email: </th>
+			  <th>Message: </th>
+			  <th>Delete Message: </th>
+			</tr>
+			<?php
+
+				// Get the customer enquiries from the database
+				$result = $this->model->getAllMessages();
+
+			?>
+			
+			<!-- This will loop through and display each order made -->
+			<?php while($row = $result->fetch_assoc()): ?>
+				<tr>
+					<form method="post" action="index.php?page=account">
+						<td><?php echo $row['FirstName']; ?></td>
+						<td><?php echo $row['LastName']; ?></td>
+						<td><?php echo $row['Email']; ?></td>
+						<td><?php echo $row['Message']; ?></td>
+						<input type="hidden" value="<?php echo $row['ID']; ?>" name="ID">	
+						<td><input type="submit" value="Delete Message" class="btn btn-info" name="delete-message"></td>
+						<?php $this->bootstrapAlert($this->deleteMessageSuccess, 'success') ?>
+						<?php $this->bootstrapAlert($this->deleteMessageFail, 'danger') ?>
 					</form>
 				</tr>
 			<?php endwhile; ?>

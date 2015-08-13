@@ -113,7 +113,7 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
                             <h2>Cupcake Packages</h2>
-                            <p>Choose the package best suits your needs</p>
+                            <p>Choose the package that best suits your needs</p>
                             <div class="col-lg-4">
                                 <img src="./img/menu/cupcakes/fancy-feast.jpg" class="col-lg-12">
                                 <h3>Fancy Feast: </h3>
