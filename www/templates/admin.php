@@ -71,4 +71,80 @@
 			<?php endwhile; ?>
 		</table>
 	</div>
-</div> 
+
+	<?php 
+
+
+		if( isset($_POST['admin-edit'])) : 
+
+			// Get the menu details
+			$result = $this->model->displayMenuInfo();
+
+			// If there is a result
+			if( $result ) {
+				
+
+				// Extract the data
+
+				$menuName = $result[0]['Name'];
+			
+			} else {
+
+				$menuName = '';
+				$menuDes  = '';
+				
+			} ?>
+			
+			<form method="post" action="index.php?page=account">
+				
+				<h2>Edit this Menu</h2>
+				<p>Update the Menus</p>
+					
+					<div>
+						<label>Menu Name: </label>	
+						<input type="text" name="menu-title" value="<?php echo $menuName; ?>">
+
+						<?php
+
+							foreach($result as $item) {
+								echo '<p>'.$item['Description'].'</p>';
+							}
+
+
+						?>
+					</div>
+
+			</form>
+
+		<?php endif; ?>
+
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

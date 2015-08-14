@@ -52,6 +52,11 @@ class AccountPage extends Page {
 				$this->processDeleteMessage();
 			}
 
+			// If the admin has clicked the edit button
+			// if( isset($_POST['admin-edit'])) {
+			// 	$this->processAdminEdit();
+			// }
+
 		}
 
 	}

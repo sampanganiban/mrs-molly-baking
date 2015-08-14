@@ -148,7 +148,7 @@ class AccountModel extends Model {
 
 	public function deleteOrder() {
 
-		$ID = ($_POST['ID']);
+		$ID = $_POST['ID'];
 	
 		$sql = "DELETE FROM orders WHERE ID = $ID";
 
@@ -165,7 +165,7 @@ class AccountModel extends Model {
 
 	public function deleteMessage() {
 
-		$ID = ($_POST['ID']);
+		$ID = $_POST['ID'];
 	
 		$sql = "DELETE FROM customers_enquiries WHERE ID = $ID";
 
@@ -179,6 +179,50 @@ class AccountModel extends Model {
 		return false;
 
 	}
+
+	public function displayMenuInfo() {
+
+		$menuName = $_POST['menu-name'];
+
+		// Prepare the sql
+		$sql = "SELECT
+					Description,
+					Name
+				FROM
+					flavours
+				JOIN
+					menu_flavours
+				ON
+					menu_flavours.flavourID =  flavours.ID
+				JOIN 
+					menus
+				ON 
+					menu_flavours.menuID = menus.ID
+				JOIN 
+					menu_types
+				ON 
+					menus.ID = menu_types.menuID
+				JOIN 
+					types
+				ON 
+					menu_types.typeID = types.ID
+				WHERE 
+					Name = '$menuName'
+			   ";
+
+		$result = $this->dbc->query($sql);
+
+		// Loop through all the results and put them into an associative array
+		$allItems = [];
+
+		while( $row = $result->fetch_assoc() ) {
+			$allItems[] = $row;
+		}
+
+		return $allItems;
+
+	}
+
 
 
 
