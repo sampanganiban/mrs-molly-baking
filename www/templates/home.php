@@ -158,7 +158,7 @@
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
                                         
-                                        <?php if(isset($_SESSION['privilege']) == 'admin' ) : ?>
+                                        <?php if(isset($_SESSION['privilege']) && $_SESSION['privilege'] == 'admin' ) : ?>
                                         <form method="post" action="index.php?page=account">
                                             <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
                                             <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
@@ -202,20 +202,31 @@
                                 // Get the names of the menus
                                 $menuNames = [];
 
+                                // Get the image associated with the menu
+                                $menuImages = [];
+
+                                foreach( $result as $image ) {
+                                    $menuImages[] = $image['MenuImage'];
+                                }
+
                                 foreach( $result as $item ) {
                                     $menuNames[] = $item['Name'];
                                 }
 
                                 // Eliminate the duplicates
                                 $menuNames = array_unique($menuNames);
+                                $counter = 0;
+
                                 // Loop through each result and display them inside the modal
                                 foreach( $menuNames as $menu ) : ?>
 
                                     <div class="col-lg-4">
-                                        <img src="./img/menu/cupcakes/fancy-feast.jpg" class="col-lg-12">
+                                        <img src="img/menu/home-menu/menu-images/<?= $menuImages[$counter]; ?>" class="col-lg-12">
                                         <h3><?= $menu ?>: </h3>
                                         <p>Flavours of this Cake: </p>
                                         <?php
+
+                                            $counter++;
 
                                             // Loop over all the results and find the descriptions that match this menu
                                             foreach($result as $item) {
@@ -227,7 +238,7 @@
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
 
-                                        <?php if($_SESSION['privilege'] == 'admin' ) : ?>
+                                        <?php if(isset($_SESSION['privilege']) && $_SESSION['privilege'] == 'admin' ) : ?>
                                         <form method="post" action="index.php?page=account">
                                             <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
                                             <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
@@ -270,20 +281,31 @@
                                 // Get the names of the menus
                                 $menuNames = [];
 
+                                // Get the image associated with the menu
+                                $menuImages = [];
+
+                                foreach( $result as $image ) {
+                                    $menuImages[] = $image['MenuImage'];
+                                }
+
                                 foreach( $result as $item ) {
                                     $menuNames[] = $item['Name'];
                                 }
 
                                 // Eliminate the duplicates
                                 $menuNames = array_unique($menuNames);
+                                $counter = 0;
+
                                 // Loop through each result and display them inside the modal
                                 foreach( $menuNames as $menu ) : ?>
 
                                     <div class="col-lg-4">
-                                        <img src="./img/menu/cupcakes/fancy-feast.jpg" class="col-lg-12">
+                                        <img src="img/menu/home-menu/menu-images/<?= $menuImages[$counter]; ?>" class="col-lg-12">
                                         <h3><?= $menu ?>: </h3>
                                         <p>Flavour of this Pie:</p>
                                         <?php
+
+                                            $counter++;
 
                                             // Loop over all the results and find the descriptions that match this menu
                                             foreach($result as $item) {
@@ -295,7 +317,7 @@
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
                                         
-                                        <?php if($_SESSION['privilege'] == 'admin' ) : ?>
+                                        <?php if(isset($_SESSION['privilege']) && $_SESSION['privilege'] == 'admin' ): ?>
                                             <form method="post" action="index.php?page=account">
                                                 <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
                                                 <input type="submit" name="admin-edit" value="Edit this menu" class="btn">

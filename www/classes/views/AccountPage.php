@@ -8,6 +8,8 @@ class AccountPage extends Page {
 	// Properties for the Additional Info form
 	private $firstName;
 	private $lastName;
+	private $bio;
+	private $userBioError;
 	private $firstNameError;
 	private $lastNameError;
 	private $additionalInfoSuccess;
@@ -97,6 +99,7 @@ class AccountPage extends Page {
 		// Make the forms sticky
 		$this->firstName = trim($_POST['first-name']);
 		$this->lastName  = trim($_POST['last-name']);
+		$this->bio       = trim($_POST['bio']);
 
 		// Validate
 
@@ -124,7 +127,7 @@ class AccountPage extends Page {
 			$this->totalErrors++;
 		}
 
-		if( strlen($_POST['bio']) > 2000 ) {
+		if( strlen($this->bio) > 2000 ) {
 			$this->userBioError = 'Sorry, your bio cannot be more than 2000 characters';
 			$this->totalErrors++;
 		}

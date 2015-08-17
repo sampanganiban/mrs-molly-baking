@@ -16,19 +16,18 @@
     // If the person has logged in
     if( isset($_SESSION['username']) && $result->num_rows == 1 ) {
 
-   
+      // Extract the data
+      $userInfo = $result->fetch_assoc();
 
-            // Extract the data
-            $userInfo = $result->fetch_assoc();
-
-            $placingOrderFirstName = $userInfo['FirstName'];
-            $placingOrderLastName  = $userInfo['LastName'];
+      // Save the data that has returned
+      $placingOrderFirstName = $userInfo['FirstName'];
+      $placingOrderLastName  = $userInfo['LastName'];
 
     
     } else {
         
-            $placingOrderFirstName  = '';
-            $placingOrderLastName   = '';
+      $placingOrderFirstName  = '';
+      $placingOrderLastName   = '';
     }
 
 

@@ -54,6 +54,7 @@
 				<div class="form-group">
 					<label for="bio">Biography:</label>
 					<textarea name="bio"><?php echo $bio ?></textarea>
+					<?php $this->bootstrapAlert($this->userBioError, 'danger') ?>
 				</div>
 				<div class="form-group">
 					<input type="hidden" name="MAX_FILE_SIZE" value="2000000">

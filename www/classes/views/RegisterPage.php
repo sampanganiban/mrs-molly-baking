@@ -33,7 +33,7 @@ class RegisterPage extends Page {
 	public function processNewAccount() {
 
 
-		// Make life easier
+		// Make life easier and make form sticky
 		$username = trim($_POST['username']);
 		$email 	  = trim($_POST['email']);
 		$pass 	  = $_POST['password'];

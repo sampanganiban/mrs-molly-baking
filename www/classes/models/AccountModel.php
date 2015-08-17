@@ -99,6 +99,7 @@ class AccountModel extends Model {
 				}
 			
 			} else {
+
 				// Convert the result into an associative array
 				$data = $result->fetch_assoc();
 
@@ -106,7 +107,7 @@ class AccountModel extends Model {
 				$image = $data['ProfileImage'];
 			}
 
-			// UPDATE
+			// UPDATE the additional info of the account logged in
 			$sql = "UPDATE users_additional_info SET FirstName = '$firstName', LastName = '$lastName', ProfileImage = '$image', Bio = '$bio' WHERE userID = $userID";
 
 		} elseif( $result->num_rows == 0 ) {
@@ -122,7 +123,7 @@ class AccountModel extends Model {
 			
 			}
 			
-			// INSERT
+			// INSERT the additional info of the account logged in
 			$sql = "INSERT INTO users_additional_info VALUES (NULL, $userID, '$firstName', '$lastName', '$image', '$bio')";
 		
 		}
