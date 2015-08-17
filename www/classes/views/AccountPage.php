@@ -25,6 +25,15 @@ class AccountPage extends Page {
 	private $passwordChangeSuccess;
 	private $passwordChangeFail;
 
+	// Properties for updating the menu
+	private $menuName;
+	private $menuFlavour;
+	private $menuNameError;
+	private $menuFlavourError;
+	private $menuImageError;
+	private $updateMenuSuccess;
+	private $updateMenuFail;
+
 	// Methods
 	public function __construct($model) {
 		parent::__construct($model);
@@ -52,10 +61,10 @@ class AccountPage extends Page {
 				$this->processDeleteMessage();
 			}
 
-			// If the admin has clicked the edit button
-			// if( isset($_POST['admin-edit'])) {
-			// 	$this->processAdminEdit();
-			// }
+			// If the admin has clicked the update menu button
+			if( isset($_POST['edit-menu'])) {
+				$this->processMenuEdit();
+			}
 
 		}
 
@@ -235,6 +244,76 @@ class AccountPage extends Page {
 		} else {
 			$this->deleteMessageFail = 'The message has not been deleted';
 		}
+
+	}
+
+	private function processMenuEdit() {
+
+		// Make sure the form is sticky and save its inputs
+		$this->menuName  = trim($_POST['menu-title']);
+		
+		// Validate the menu name
+		if( strlen($this->menuName) < 8 ) {
+			$this->menuNameError = 'Sorry the menu name must not be shorter than 10 characters';
+			$this->totalErrors++;
+		} elseif( strlen($this->menuName) > 30 ) {
+			$this->menuNameError = 'Sorry the menu name must not be longer than 30 characters';
+			$this->totalErrors++;
+		}
+
+
+		// Attempt to upload the menu image
+		if( $this->totalErrors == 0 && isset($_FILES['menu-image']) && $_FILES['menu-image']['name'] != '' ) {
+			
+			$file      = $_FILES['menu-image'];
+			$imageName = $file['name'];
+
+			// Require the image uploader
+			require 'vendor/ImageUploader.php';
+
+			// Create instance of the Image Uploader
+			$imageUploader = new ImageUploader();
+
+			// Attempt to upload the file
+			$result = $imageUploader->upload('menu-image', 'img/menu/home-menu/menu-images/');
+
+			// die($result);
+
+			// If the upload was a success
+			if( $result == true ) {
+
+				// Get the file name
+				$imageName = $imageUploader->getImageName();
+
+				// Prepare the variables
+				$fileLocation = "img/menu/home-menu/menu-images/$imageName";
+				$destination = "img/menu/home-menu/menu-images/";
+
+				// Resize the menu image
+				$imageUploader->resize($fileLocation, 320, $destination, $imageName);
+
+				$_POST['menu-image'] = $imageName;
+
+			} else {
+				// Something went wrong
+				$this->totalErrors++;
+				$this->menuImageError = $imageUploader->errorMessage;
+			}
+
+		}
+
+		if( $this->totalErrors == 0 ) { 
+			$result = $this->model->updateMenu();
+
+			// If the menu successfully updated
+			if($result) {
+				$this->updateMenuSuccess = 'You have updated the menu';
+			} else {
+				$this->updateMenuFail = 'Menu was not updated';
+			}
+		
+		}
+
 
 	}
 

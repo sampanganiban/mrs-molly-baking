@@ -12,7 +12,7 @@ class OrderModel extends Model {
 	// Function to display the user's information when they place an order
 	public function displayUserInfo() {
 
-		$userID = $_SESSION['userID'];
+		$userID = isset($_SESSION['userID']);
 		
 		return $this->dbc->query("SELECT FirstName, LastName FROM users_additional_info
 			WHERE userID = $userID");
