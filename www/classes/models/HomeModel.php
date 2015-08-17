@@ -10,7 +10,8 @@ class HomeModel extends model {
 		// Prepare the sql
 		$sql = "SELECT
 					Description,
-					Name
+					Name,
+					MenuImage
 				FROM
 					flavours
 				JOIN
@@ -41,6 +42,7 @@ class HomeModel extends model {
 			$allMenus[] = $row;
 		}
 
+
 		return $allMenus;
 
 	}
@@ -50,7 +52,8 @@ class HomeModel extends model {
 		// Prepare the sql
 		$sql = "SELECT
 					Description,
-					Name
+					Name,
+					MenuImage
 				FROM
 					flavours
 				JOIN
@@ -91,7 +94,8 @@ class HomeModel extends model {
 		// Prepare the sql
 		$sql = "SELECT
 					Description,
-					Name
+					Name,
+					MenuImage
 				FROM
 					flavours
 				JOIN

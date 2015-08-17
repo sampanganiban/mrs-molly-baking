@@ -141,7 +141,7 @@ class AccountModel extends Model {
 
 	public function getAdditionalInfo() {
 
-		return $this->dbc->query("	SELECT FirstName, LastName, Bio FROM users_additional_info WHERE UserID = ".$_SESSION['userID']);
+		return $this->dbc->query("SELECT FirstName, LastName, Bio FROM users_additional_info WHERE UserID = ".$_SESSION['userID']);
 
 	}
 
@@ -187,7 +187,8 @@ class AccountModel extends Model {
 		// Prepare the sql
 		$sql = "SELECT
 					Description,
-					Name
+					Name,
+					MenuImage
 				FROM
 					flavours
 				JOIN
@@ -223,6 +224,49 @@ class AccountModel extends Model {
 
 	}
 
+	public function updateMenu() {
+		
+		// Inputs taken from the edit menu form
+		
+		$originalMenuName = $this->filter($_POST['menu-name']);
+
+		// Get the ID of this menu
+		$sql = "SELECT ID FROM menus WHERE Name = '$originalMenuName'";
+		$result = $this->dbc->query($sql);
+		$result = $result->fetch_assoc();
+		$menuID = $result['ID'];
+
+		// If the user has provided an image
+		if( isset($_POST['menu-image']) ) {
+			$menuImage   = $_POST['menu-image'];
+		}else {
+			// Get the current file name
+			$sql = "SELECT MenuImage FROM menus WHERE ID = '$menuID'";
+			$result = $this->dbc->query($sql);
+			$result = $result->fetch_assoc();
+			$menuImage = $result['MenuImage'];
+		}
+
+		// Filter the inputs
+		// $menuName  = $this->filter($menuName);
+		$menuImage = $this->filter($menuImage);
+		$newTitle    = $_POST['menu-title'];
+		$_POST['menu-name'] = $newTitle;
+
+		// Prepare the sql
+		$sql = " UPDATE menus SET Name = '$newTitle', MenuImage  = '$menuImage' WHERE ID = '$menuID' ";
+
+		// Run the query
+		$this->dbc->query($sql);
+
+		// If the query failed
+		if( $this->dbc->affected_rows == 1 ) {
+			return true;
+		}
+
+		return false;
+
+	}
 
 
 

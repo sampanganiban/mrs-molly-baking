@@ -123,22 +123,31 @@
                                 // Get the names of the menus
                                 $menuNames = [];
 
+                                // Get the image associated with the menu
+                                $menuImages = [];
+
+                                foreach( $result as $image ) {
+                                    $menuImages[] = $image['MenuImage'];
+                                }
+
                                 foreach( $result as $item ) {
                                     $menuNames[] = $item['Name'];
                                 }
 
                                 // Eliminate the duplicates
                                 $menuNames = array_unique($menuNames);
-                                
+                                $counter = 0;
+
                                 // Loop through each result and display them inside the modal
                                 foreach( $menuNames as $menu ) : ?>
 
                                     <div class="col-lg-4">
-                                        <img src="./img/menu/cupcakes/fancy-feast.jpg" class="col-lg-12">
+                                        <img src="img/menu/home-menu/menu-images/<?= $menuImages[$counter]; ?>" class="col-lg-12">
                                         <h3><?= $menu ?>: </h3>
                                         <p>This menu includes:</p>
                                         <?php
 
+                                            $counter+=3;
                                             // Loop over all the results and find the descriptions that match this menu
                                             foreach($result as $item) {
                                                 if( $item['Name'] == $menu ) {
@@ -148,43 +157,20 @@
 
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                                        <?php if($_SESSION['privilege'] == 'admin' ) : ?>
+                                        
+                                        <?php if(isset($_SESSION['privilege']) == 'admin' ) : ?>
                                         <form method="post" action="index.php?page=account">
                                             <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
                                             <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
                                         </form>
+
                                         <?php endif; ?>
+
+                                    
                                     </div>
 
                             <?php endforeach; ?>
                             
-                            <!-- <div class="col-lg-4">
-                                <img src="./img/menu/cupcakes/fancy-feast.jpg" class="col-lg-12">
-                                <h3>Fancy Feast: </h3>
-                                <p>This menu includes:</p>
-                                <p>Vanilla Cupcakes with Vanilla Bean and Chocolate Swirl Buttercream</p>
-                                <p>Green Tea Cupcakes with White Chocolate Buttercream</p>
-                                <p>Red Velvet Cupcakes with Lemon Buttercream</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/cupcakes/mainstream.jpg" class="col-lg-12">
-                                <h3>Mainstream Munch: </h3>
-                                <p>This menu includes:</p>
-                                <p>Vanilla Cupcakes with Vanilla Icing and Hundreds and Thousands</p>
-                                <p>Chocolate Flavoured Cupcakes with Vanilla Buttercream</p>
-                                <p>Caramel Flavoured Cupcakes with PB&amp;J Buttercream</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/cupcakes/party-time.jpg" class="col-lg-12">
-                                <h3>Party Time: </h3>
-                                <p>This menu includes:</p>
-                                <p>Cookies &amp; Cream Cupcakes with Oreo Buttercream</p>
-                                <p>Chocolate Cupcakes with Caramel &amp; Peanut icing</p>
-                                <p>Chocolate Cupcakes with Coconut Buttercream</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -240,35 +226,19 @@
 
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                                    </div>
-                                    <?php if($_SESSION['privilege'] == 'admin' ) : ?>
+
+                                        <?php if($_SESSION['privilege'] == 'admin' ) : ?>
                                         <form method="post" action="index.php?page=account">
                                             <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
                                             <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
                                         </form>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                    
+                                    </div>
+                                    
 
 
                                 <?php endforeach; ?>
-<!-- 
-                            <div class="col-lg-4">
-                                <img src="./img/menu/cakes/vanilla.jpg" class="col-lg-12">
-                                <h3>Vanilla Cake: </h3>
-                                <p>Two layer vanilla cake with semi-sweet chocolate whipped cream icing</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/cakes/lemon.jpg" class="col-lg-12">
-                                <h3>Lemon Cake: </h3>
-                                <p>Lemon cake with lemon icing with almonds and sugared lemons for garnish</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/cakes/carrot.jpg" class="col-lg-12">
-                                <h3>Carrot Cake: </h3>
-                                <p>Carrot Cake with vanilla icing and almonds with edible royal icing carrots</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div> -->
                         </div>
                      </div>
                 </div>
@@ -324,36 +294,17 @@
 
                                         ?>
                                         <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                                    </div>
-
-                                    <?php if($_SESSION['privilege'] == 'admin' ) : ?>
-                                        <form method="post" action="index.php?page=account">
-                                            <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
-                                            <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
-                                        </form>
-                                    <?php endif; ?>
-
+                                        
+                                        <?php if($_SESSION['privilege'] == 'admin' ) : ?>
+                                            <form method="post" action="index.php?page=account">
+                                                <input type="hidden" name="menu-name" value="<?php echo $menu; ?>">  
+                                                <input type="submit" name="admin-edit" value="Edit this menu" class="btn">
+                                            </form>
+                                        <?php endif; ?>
+                                    
+                                    </div>                    
 
                                 <?php endforeach; ?>
-
-                            <!-- <div class="col-lg-4">
-                                <img src="./img/menu/pies/raspberry.jpg" class="col-lg-12">
-                                <h3>Classic Raspberry Pie: </h3>
-                                <p>Shortbread pastry case with raspberry coulis with fluffy meringue top</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/pies/fruit.jpg" class="col-lg-12">
-                                <h3>Fruit Pie: </h3>
-                                <p>Winter fruit mixed with egg custard on a crisp and flaky pastry base</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <img src="./img/menu/pies/meat.jpg" class="col-lg-12">
-                                <h3>Steak &amp; Cheese Pie: </h3>
-                                <p>Nice flaky pastry with quality steak with aged Cheddar</p>
-                                <a href="index.php?page=order" class="btn btn-primary">I want this!</a>
-                            </div> -->
                         </div>
                      </div>
                 </div>

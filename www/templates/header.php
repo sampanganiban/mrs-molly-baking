@@ -79,7 +79,7 @@
                       $text = 'Account';
                     }
 
-                ?><!-- <span class="sr-only">Toggle Dropdown</span>role="presentation" -->
+                ?>
 				  <li  class="dropdown" id="dropdown">
                     <a href="index.php?page=account" id="account-link"><?php echo $text; ?></a>
                     <a data-toggle="dropdown" aria-haspopup="true" id="caret"><span class="caret"></span></a>

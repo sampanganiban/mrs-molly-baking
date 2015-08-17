@@ -1,5 +1,56 @@
 <div class="container">
 	<div class="row">
+	<?php 
+		if( isset($_POST['admin-edit'])) : 
+			
+
+			// Get the menu details
+			$result = $this->model->displayMenuInfo();
+
+			// If there is a result
+			if( $result ) {
+
+				// Extract the data
+				$menuName = $result[0]['Name'];
+			
+			} else {
+
+				$menuName = '';
+				
+			} 
+	?>
+			
+		<form method="post" action="index.php?page=account" enctype="multipart/form-data">
+			
+			<h2>Edit this Menu</h2>
+			<p>Edit the selected Menu</p>
+				
+				<div class="form-group">
+					<label class="col-md-2">Menu Name: </label>	
+					<input type="text" name="menu-title" value="<?php echo $menuName; ?>" >
+					<?php $this->bootstrapAlert($this->menuNameError, 'danger') ?>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2">Menu Image: </label>
+					<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+					<input type="file" name="menu-image">
+					<?php $this->bootstrapAlert($this->menuImageError, 'danger') ?>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Edit the Menu" name="edit-menu" class="btn btn-primary" class="col-md-2">
+					<?php $this->bootstrapAlert($this->updateMenuSuccess, 'success') ?>
+					<?php $this->bootstrapAlert($this->updateMenuFail, 'danger') ?>
+				</div>
+
+				<input type="hidden" name="admin-edit" value="">
+				<input type="hidden" name="menu-name" value="<?= $_POST['menu-name']; ?>">
+
+		</form>
+
+		<?php endif; ?>
+
 		<table class="table">
 		<h2>Customer ORDERS</h2>
 			<tr>
@@ -71,54 +122,6 @@
 			<?php endwhile; ?>
 		</table>
 	</div>
-
-	<?php 
-
-
-		if( isset($_POST['admin-edit'])) : 
-
-			// Get the menu details
-			$result = $this->model->displayMenuInfo();
-
-			// If there is a result
-			if( $result ) {
-				
-
-				// Extract the data
-
-				$menuName = $result[0]['Name'];
-			
-			} else {
-
-				$menuName = '';
-				$menuDes  = '';
-				
-			} ?>
-			
-			<form method="post" action="index.php?page=account">
-				
-				<h2>Edit this Menu</h2>
-				<p>Update the Menus</p>
-					
-					<div>
-						<label>Menu Name: </label>	
-						<input type="text" name="menu-title" value="<?php echo $menuName; ?>">
-
-						<?php
-
-							foreach($result as $item) {
-								echo '<p>'.$item['Description'].'</p>';
-							}
-
-
-						?>
-					</div>
-
-			</form>
-
-		<?php endif; ?>
-
-	
 </div>
 
 
