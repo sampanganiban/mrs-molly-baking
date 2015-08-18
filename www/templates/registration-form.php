@@ -9,12 +9,13 @@
         </div>
           <div class="form-group" class="col-md-6">
             <label for="username">Username:</label>
-            <input type="username" class="form-control" value="<?php echo $this->username; ?>" placeholder="iambatman" name="username">
+            <input type="username" class="form-control" value="<?php echo $this->username; ?>" placeholder="iambatman" name="username" id="username">
+            <span id="username-message"></span>
             <?php $this->bootstrapAlert($this->usernameError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" value="<?php echo $this->email; ?>" placeholder="example@email.com" name="email">
+            <input type="email" class="form-control" value="<?php echo $this->email; ?>" placeholder="example@email.com" name="email" id="email">
             <?php $this->bootstrapAlert($this->emailError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">

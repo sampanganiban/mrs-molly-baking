@@ -50,6 +50,12 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
 
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- jQery -->
+    <script src="js/live-validation.js"></script>
+
 </body>
 
 </html>
