@@ -88,6 +88,33 @@
 			<?php endwhile; ?>
 		</table>
 	</div>
+
+	<div class="row">
+		<h2>Customer Information</h2>
+		<select name="customer" id="customer">
+			<option>Please select..</option>
+		<?php
+
+			// Connect to the database
+			$dbc = new mysqli('localhost', DB_USER, DB_PASS, DB_NAME);
+
+			// Prepare SQL
+			$sql = "SELECT ID, CONCAT(LastName, ', ', FirstName) AS Customer FROM orders ORDER BY Customer";
+
+			// Run the query
+			$result = $dbc->query($sql);
+
+			// Loop through each result
+			while($customer = $result->fetch_assoc()) {
+				echo '<option value="'.$customer[ID].'">';
+				echo $customer['Customer'];
+				echo '</option>';
+			}
+
+		?>
+		</select>
+	</div>
+	
 	<div class="row">
 		<table class="table">
 		<h2>Customer Enquiries</h2>

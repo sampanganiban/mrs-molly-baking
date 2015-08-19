@@ -55,6 +55,7 @@
 
     <!-- jQery -->
     <script src="js/live-validation.js"></script>
+    <script src="js/customer-info.js"></script>
 
 </body>
 

@@ -23,12 +23,14 @@ function checkUsername() {
 	// Send the username to the server
 	$.ajax({
 		type: 'post',
+		// url is where the file can be found, not in relation to the js file, js is embedded using the src attribute
 		url: 'app/validate-username.php',
 		data: {
-			// key: variable 
+			// key: variable pairs, they are different
 			username: username
 		},
 		success: function(dataFromServer) {
+			// Selecting an element with id of username-message and storing a message in it
 			$('#username-message').html(dataFromServer);
 		},
 		error: function(){
