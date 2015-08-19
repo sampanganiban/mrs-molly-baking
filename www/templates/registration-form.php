@@ -16,6 +16,7 @@
           <div class="form-group" class="col-md-6">
             <label for="email">Email:</label>
             <input type="email" class="form-control" value="<?php echo $this->email; ?>" placeholder="example@email.com" name="email" id="email">
+            <span id="email-message"></span>
             <?php $this->bootstrapAlert($this->emailError, 'danger') ?>
           </div>
           <div class="form-group" class="col-md-6">

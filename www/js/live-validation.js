@@ -2,6 +2,7 @@ $('document').ready(function(){
 
 	// Listen to the username and email inputs
 	$('#username').blur(checkUsername);
+	$('#email').blur(checkEmail);
 
 });
 
@@ -34,4 +35,34 @@ function checkUsername() {
 			console.log('cannot find the php file');
 		}
 	});
+}
+
+function checkEmail() {
+
+	// Obtain the email
+	var email = $(this).val();
+
+	// Leave if the email is blank
+	if( email.length < 5 ) {
+		$('#email-message').html('Needs to be at least 5 characters');
+		return;
+	} else {
+		$('#email-message').html('');
+	}
+
+	// Send the email to the server
+	$.ajax({
+		type: 'post',
+		url: 'app/validate-email.php',
+		data: {
+			email: email
+		},
+		success: function(dataFromServer) {
+			$('#email-message').html(dataFromServer);
+		},
+		error: function(){
+			console.log('cannot find the php file');
+		}
+	});
+
 }
