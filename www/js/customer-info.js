@@ -25,7 +25,16 @@ function getCustomerInfo() {
 			customerID: custID
 		},
 		success: function(dataFromServer){
-			alert(dataFromServer);
+				
+			// Create an unordered list
+			var ul = $('<ul>');
+
+			// Insert the data
+			$(ul).append('<li>'+dataFromServer.email+'</li>');
+
+			// Add this new ul to the customer-info div
+			$('#customer-info').html(ul);
+
 		},
 		error: function() {
 			console.log('cannot connect to server');

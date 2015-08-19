@@ -113,8 +113,9 @@
 
 		?>
 		</select>
+		<div id="customer-info"></div>
 	</div>
-	
+
 	<div class="row">
 		<table class="table">
 		<h2>Customer Enquiries</h2>
