@@ -65,6 +65,37 @@
               ?>
             </select>
           </div>
+
+        <div class="row">  
+          <div class="form-group">
+              <label>Select a City and Suburb where you want your order to be delivered:</label>
+              <select id="city" name="city">
+                 <option>Please select a city...</option>
+                 <?php
+
+                    // Connect to the database
+                    $dbc = new mysqli('localhost', DB_USER, DB_PASS, DB_NAME);
+
+                    // Prepare the SQL
+                    $sql = "SELECT cityID, cityName FROM cities";
+
+                    // Run the query
+                    $result = $dbc->query($sql);
+
+                    // Loop through each result
+                    while($city = $result->fetch_assoc()) {
+
+                      echo '<option value="'.$city['cityID'].'">';
+                      echo $city['cityName'];
+                      echo '</option>';
+
+                    }
+
+                 ?> 
+              </select>  
+          </div>
+        </div>
+
            <div class="form-group">
             <label for="message" class="col-md-2">Enquiries about your order:</label>
             <textarea name="message" id="message" placeholder=" Message.." cols="30" rows="5"></textarea>
@@ -76,5 +107,24 @@
           </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </form>
     
