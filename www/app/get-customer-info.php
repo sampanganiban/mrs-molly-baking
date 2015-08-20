@@ -24,15 +24,16 @@ if($resultDB->num_rows == 1) {
 	// Convert result into an associative array
 	$resultASSOC = $resultDB->fetch_assoc();
 
-	// json_encode will convert a PHP associative array into JSON for JS
+	// json_encode will convert a PHP associative array into JSON
 	$resultJSON = json_encode($resultASSOC);
 	
 	// Set up the header so JavaScript knows it's JSON
 	// Define the mimetype, telling the header that JS is receiving JSON
 	// Also tells the browser what type of file they are sending
+	// browsers be default will assume the type as text so you need to specify what type it is
 	header('Content-Type: application/json');
 
-	// Send this data back to the JS file to display this data, convert the result to JSON
+	// Send this data back to the JS file to display this data, the converted result to JSON
 	echo $resultJSON;
 
 

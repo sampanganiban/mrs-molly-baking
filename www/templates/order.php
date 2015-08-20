@@ -92,7 +92,12 @@
                     }
 
                  ?> 
-              </select>  
+              </select>
+              <select id="suburb" name="suburb">
+
+
+              
+              </select>
           </div>
         </div>
 

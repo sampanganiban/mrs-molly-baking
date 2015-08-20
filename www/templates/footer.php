@@ -56,6 +56,7 @@
     <!-- jQery -->
     <script src="js/live-validation.js"></script>
     <script src="js/customer-info.js"></script>
+    <script src="js/cities-and-suburbs.js"></script>
 
 </body>
 
