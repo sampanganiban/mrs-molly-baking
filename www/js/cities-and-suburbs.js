@@ -46,6 +46,9 @@ function showSuburbs() {
 
 			// $(DataFromServer).each(function(i){
 
+			// 	// Clear the suburbs for each city
+			// 	$('#suburb').html('');
+
 			// 	// Create an option element
 			// 	var option = $('<option>');
 

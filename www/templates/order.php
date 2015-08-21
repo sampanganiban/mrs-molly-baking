@@ -68,7 +68,7 @@
 
         <div class="row">  
           <div class="form-group">
-              <label>Select a City and Suburb where you want your order to be delivered:</label>
+              <label>Places we deliver, select one:</label>
               <select id="city" name="city">
                  <option>Please select a city...</option>
                  <?php

@@ -15,7 +15,7 @@ $cityID = $dbc->real_escape_string($_GET['cityID']);
 // Prepare SQL
 $sql = "SELECT cityName, suburbName 
 		FROM suburbs 
-		JOIN cities 
+		JOIN cities
 		ON cities.cityID = suburbs.cityID
 		WHERE cities.cityID ='$cityID'";
 

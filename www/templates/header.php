@@ -70,6 +70,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+               
+
                 <?php
 
                     // Display the users username if they are logged it, if not then just display account
@@ -97,8 +99,15 @@
                             ?>
                         </ul>  
                   </li>
+                  <form>
+                      <div>
+                        <input type="search" name="search" id="search" list="search-results" placeholder="What are you looking for?">
+                        <datalist id="search-results"></datalist>
+                      </div>
+                </form>
 				</ul>
-            </div>
+
+            </div> 
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
