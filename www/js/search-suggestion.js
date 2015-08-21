@@ -19,6 +19,9 @@ function displaySearchOptions() {
 			// Console log the data taken from server
 			console.log(DataFromServer);
 
+			// Clear any unrelated search results
+			$('#search-results').html('');
+
 			// Loop through the search results and display them in a datalist
 			$(DataFromServer).each(function(i){
 				$('#search-results').append('<option value="'+DataFromServer[i]+'">');
