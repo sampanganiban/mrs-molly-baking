@@ -77,8 +77,8 @@ class AccountPage extends Page {
 		// Make sure a user has logged in, if not then offer them a login or registration link
 		if( !isset($_SESSION['username']) ) {
 			
-			echo 'Sorry you need an account';
-			return;
+			// Redirect the user to login to their account
+			header('Location: index.php?page=login');
 		}
 
 		include 'templates/account.php';
