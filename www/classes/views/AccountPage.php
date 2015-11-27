@@ -40,6 +40,12 @@ class AccountPage extends Page {
 	public function __construct($model) {
 		parent::__construct($model);
 
+		// Make sure a user has logged in, if not then offer them a login or registration link
+		if( !isset($_SESSION['username']) ) {	
+			// Redirect the user to login to their account
+			header('Location: index.php?page=login');
+		}
+
 		// If updating or inserting additional user info
 		if(isset($_POST['additional-info'])) {
 			$this->processAdditionalInfo();
@@ -73,13 +79,6 @@ class AccountPage extends Page {
 	}
 
 	public function contentHTML() {
-
-		// Make sure a user has logged in, if not then offer them a login or registration link
-		if( !isset($_SESSION['username']) ) {
-			
-			// Redirect the user to login to their account
-			header('Location: index.php?page=login');
-		}
 
 		include 'templates/account.php';
 
